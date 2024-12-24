@@ -44,14 +44,18 @@ import Drama, { DramaType } from './classes/drama/Dramas.js';
             const currentIndex = MessageID.getID();
 
             if (currentIndex === 0) {
+                // Maybe first message isn't clickOnce message.
                 while (!Drama.clickOnceContains(Message.messages[MessageID.getID()])) {
                     await processMessage();
                 }
+                // After the while loop,next message is clickOnce message.
+                // We want to show the message.
+                // So, we need process it.
                 await processMessage();
                 return;
             }
 
-            let startIndex = -1;
+            let startIndex: number = -1;
             for (let i = currentIndex; i >= 0; i--) {
                 if (Message.messages[i].type === DramaType.Ball) {
                     startIndex = i;
@@ -63,35 +67,30 @@ import Drama, { DramaType } from './classes/drama/Dramas.js';
                 throw new Error("No message with type DramaType.Ball found");
             }
 
-            const message = Message.messages[startIndex];
+            KeyAnimation.setObjAnimation(Message.messages[startIndex].obj, createNewTextLine());
+
+            // Because messages[startIndex] is processed (DramaType.Ball), so need add 1.
+
+            // When startIndex === currentIndex, for loop will not run,
+            // because i (startIndex + 1) > currentIndex.
+
+            // By the way, because the for loop limit is currentIndex,
+            // and MessageID.getID() === currentIndex,
+            // so we not need to call MessageID.addOne() method.
+            for (let i = startIndex + 1; i <= currentIndex; i++) {
+                const currentMessage = Message.messages[i];
+
+                if (currentMessage.type === DramaType.Code) {
+                    await currentMessage.obj();
+                } else if (currentMessage.type === DramaType.Function) {
+                    await currentMessage.obj();
+                } else {
+                    throw new Error("Invalid message type");
+                }
+            }
 
             MessageID.addOne();
-
-            for (let i = startIndex; i < currentIndex; i++) {
-                const currentMessage = Message.messages[i];
-                if (currentMessage.type === DramaType.Function) {
-                    await currentMessage.obj();
-                }
-            }
-
-            if (message.type === DramaType.Ball) {
-                KeyAnimation.setObjAnimation(message.obj, createNewTextLine());
-            } else if (message.type === DramaType.Code) {
-                KeyAnimation.setObjAnimation2(message.obj, async () => { });
-            } else {
-                const nextMessage = Message.messages[MessageID.getID()];
-                const finalCallBack = async () => {
-                    await message.obj();
-                    if (!Drama.clickOnceContains(nextMessage)) {
-                        await processMessage();
-                    }
-                };
-                if (Message.messages[startIndex].type === DramaType.Ball) {
-                    KeyAnimation.setObjAnimation(Message.messages[startIndex].obj, createNewTextLine(), finalCallBack);
-                } else {
-                    KeyAnimation.setObjAnimation2(Message.messages[startIndex].obj, finalCallBack);
-                }
-            }
+            // Prepare for next click.
         }
 
         private static async initAll(): Promise<void> {

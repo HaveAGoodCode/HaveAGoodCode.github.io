@@ -19,7 +19,7 @@ export default class KeyAnimation {
     }
 
     private static setupObjAnimationStyles(obj: HTMLElement): void {
-        obj.style.borderRightColor = 'rgb(0, 0, 0)';
+        obj.style.borderRightColor = document.documentElement.style.getPropertyValue('--caret-color');
         obj.style.animation = `caret 0.8s steps(1) infinite`;
     }
 

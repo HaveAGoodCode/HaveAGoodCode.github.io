@@ -1,18 +1,1 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import Setting from '../setting/Setting.js';
-export let goodMessage;
-export let messages = [];
-(function () {
-    return __awaiter(this, void 0, void 0, function* () {
-        const messageRes = yield fetch(Setting.fineSentenceAPI);
-        goodMessage = yield messageRes.text();
-    });
-})();
+var __awaiter=this&&this.__awaiter||function(t,s,c,r){return new(c=c||Promise)(function(n,e){function i(t){try{a(r.next(t))}catch(t){e(t)}}function o(t){try{a(r.throw(t))}catch(t){e(t)}}function a(t){var e;t.done?n(t.value):((e=t.value)instanceof c?e:new c(function(t){t(e)})).then(i,o)}a((r=r.apply(t,s||[])).next())})};import Setting from"../setting/Setting.js";let goodMessage,messages=[];!function(){__awaiter(this,void 0,void 0,function*(){var t=yield fetch(Setting.fineSentenceAPI);goodMessage=yield t.text()})}();export{goodMessage,messages};

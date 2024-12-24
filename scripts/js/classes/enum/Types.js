@@ -1,4 +1,1 @@
-import Question from '../textbook/Question.js';
-export const classList = Object.freeze({
-    Question
-});
+import Question from"../textbook/Question.js";let classList=Object.freeze({Question:Question});export{classList};
