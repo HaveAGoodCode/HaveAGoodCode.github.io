@@ -44,7 +44,16 @@ class Codes{}Codes.helloWorld=`
     int i = 5; i = i + 6; System.out.println(i);`,Codes.q17=`
     int i = 9; i = i - 6; System.out.println(i);`,Codes.q18=`
     int i = 3; i = i * 6; System.out.println(i);`,Codes.q19=`
-    int i = 42; i = i / 6; System.out.println(i);`,Codes.println=`
+    int i = 42; i = i / 6; System.out.println(i);`,Codes.q20_1=`
+    int average(int x, int y) {
+        return (x + y)/2;
+    }
+    int a = 0;
+    int b = 6;
+    System.out.println(average(a,b));`,Codes.q20_2=`
+    int a = 0;
+    int b = 6;
+    System.out.println((a + b)/2);`,Codes.println=`
     System.out.println("Hello World!");`,Codes.equalTrue=`
     System.out.println(5 == 5);`,Codes.equalFalse=`
     System.out.println(5 == 3);`,Codes.declareBool=`
@@ -71,4 +80,35 @@ class Codes{}Codes.helloWorld=`
     int a = 0; a = a + 1; System.out.println(a);`,Codes.minus=`
     int a = 0; a = a - 1; System.out.println(a);`,Codes.multiply=`
     int a = 2; a = a * 2; System.out.println(a);`,Codes.divide=`
-    int a = 6; a = a / 3; System.out.println(a);`;export default Codes;
+    int a = 6; a = a / 3; System.out.println(a);`,Codes.extend=`
+    class Animal {}
+    class Dog extends Animal{}`,Codes.earthHaveWaterTrue=`
+    boolean earthHaveWater = true;`,Codes.earthHaveWaterFalse=`
+    earthHaveWater = false;`,Codes.finalEarthHaveWaterTrue=`
+    final boolean earthHaveWater = true;`,Codes.beforeMethod=`
+    System.out.println((a+b) + (a-b) - (a*b) * (a/b) / (a+b));
+    System.out.println((c+d) + (c-d) - (c*d) * (c/d) / (c+d));
+    System.out.println((e+f) + (e-f) - (e*f) * (e/f) / (e+f));
+    System.out.println((g+h) + (g-h) - (g*h) * (g/h) / (g+h));`,Codes.addMethod=`
+    int add(int a, int b) { return a + b; }`,Codes.addExample=`
+    System.out.println(add(3, 1));`,Codes.notUsedExample=`
+    int a = 3; int b = 1; System.out.println(a + b);`,Codes.realMethod=`
+    int abc(int x, int y) {
+        return (x+y) + (x-y) - (x*y) * (x/y) / (x+y);
+    }`,Codes.exchangeMethod=`
+    System.out.println(abc(a, b)); 
+    System.out.println(abc(c, d));
+    System.out.println(abc(e, f)); 
+    System.out.println(abc(g, h));`,Codes.abstractBeforeOverride=`
+    abstract class Animal {
+        abstract int method();
+    }
+    class Dog extends Animal {}`,Codes.abstractAfterOverride=`
+    abstract class Animal {
+        abstract int method();
+    }
+    class Dog extends Animal {
+        int method() {
+            return 0;
+        }
+    }`;export default Codes;

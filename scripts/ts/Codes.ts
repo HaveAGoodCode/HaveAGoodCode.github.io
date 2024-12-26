@@ -68,6 +68,17 @@ export default class Codes {
     int i = 3; i = i * 6; System.out.println(i);`;
     public static readonly q19: string = `
     int i = 42; i = i / 6; System.out.println(i);`;
+    public static readonly q20_1: string = `
+    int average(int x, int y) {
+        return (x + y)/2;
+    }
+    int a = 0;
+    int b = 6;
+    System.out.println(average(a,b));`;
+    public static readonly q20_2: string = `
+    int a = 0;
+    int b = 6;
+    System.out.println((a + b)/2);`;
 
     public static readonly println: string = `
     System.out.println("Hello World!");`;
@@ -117,4 +128,47 @@ export default class Codes {
     int a = 2; a = a * 2; System.out.println(a);`;
     public static readonly divide: string = `
     int a = 6; a = a / 3; System.out.println(a);`;
+    public static readonly extend: string = `
+    class Animal {}
+    class Dog extends Animal{}`;
+    public static readonly earthHaveWaterTrue: string = `
+    boolean earthHaveWater = true;`;
+    public static readonly earthHaveWaterFalse: string = `
+    earthHaveWater = false;`;
+    public static readonly finalEarthHaveWaterTrue: string = `
+    final boolean earthHaveWater = true;`;
+    public static readonly beforeMethod: string = `
+    System.out.println((a+b) + (a-b) - (a*b) * (a/b) / (a+b));
+    System.out.println((c+d) + (c-d) - (c*d) * (c/d) / (c+d));
+    System.out.println((e+f) + (e-f) - (e*f) * (e/f) / (e+f));
+    System.out.println((g+h) + (g-h) - (g*h) * (g/h) / (g+h));`;
+    public static readonly addMethod: string = `
+    int add(int a, int b) { return a + b; }`;
+    public static readonly addExample: string = `
+    System.out.println(add(3, 1));`;
+    public static readonly notUsedExample: string = `
+    int a = 3; int b = 1; System.out.println(a + b);`;
+    public static readonly realMethod: string = `
+    int abc(int x, int y) {
+        return (x+y) + (x-y) - (x*y) * (x/y) / (x+y);
+    }`;
+    public static readonly exchangeMethod: string = `
+    System.out.println(abc(a, b)); 
+    System.out.println(abc(c, d));
+    System.out.println(abc(e, f)); 
+    System.out.println(abc(g, h));`;
+    public static readonly abstractBeforeOverride: string = `
+    abstract class Animal {
+        abstract int method();
+    }
+    class Dog extends Animal {}`;
+    public static readonly abstractAfterOverride: string = `
+    abstract class Animal {
+        abstract int method();
+    }
+    class Dog extends Animal {
+        int method() {
+            return 0;
+        }
+    }`;
 }

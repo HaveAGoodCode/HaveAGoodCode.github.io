@@ -33,9 +33,9 @@ export default class Drama {
                 for (const [replaceString, replaceTarget] of replaceMap) {
                     updatedMessage = updatedMessage.replace(replaceString(), replaceTarget());
                 }
-                message.obj = updatedMessage;   
-                
-                break;             
+                message.obj = updatedMessage;
+
+                break;
             }
         }
         return message;
@@ -43,5 +43,29 @@ export default class Drama {
 
     public static clickOnceContains(type: Message): boolean {
         return Drama.clickType.includes(type.type);
+    }
+
+    public static findMessageID(type?: DramaType, obj?: any, om?: string): number {
+        if (Message.messages.length === 0) {
+            throw new Error("Message.messages is empty");
+        }
+
+        for (let i = 0; i < Message.messages.length; i++) {
+            const currentMessage = Message.messages[i];
+
+            if (
+                (type !== undefined && currentMessage.type !== type) ||
+                (typeof obj === 'string' && typeof currentMessage.obj === 'string' && !currentMessage.obj.includes(obj)) ||
+                (typeof obj === 'function' && typeof currentMessage.obj === 'function' && obj.name !== currentMessage.obj.name) ||
+                (obj !== undefined && typeof obj !== 'string' && typeof obj !== 'function' && currentMessage.obj !== obj) ||
+                (om !== undefined && currentMessage.originalMessage !== om)
+            ) {
+                continue;
+            }
+
+            return i;
+        }
+
+        throw new Error("Message not found");
     }
 }

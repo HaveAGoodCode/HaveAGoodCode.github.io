@@ -214,7 +214,25 @@ class Part{}Part.Part1=Object.freeze(`@Ball:true為真，false為假
         @Ball:a += 1; 可以寫成a++。a -= 1; 可以寫成 a--。
         @Ball:「a*=5和a/=9一樣嗎?」
         @Code:q1
-        @Answer:false`),Part.Part31=Object.freeze(`@Ball:class 就像生物分類裡的「屬」
+        @Answer:false`),Part._final=Object.freeze(`@Ball:相信你一定有想過
+        @Ball:如果我需要儲存一個變量
+        @Ball:而不想讓他的值變動(固定值)的話要怎麼辦?
+        @Ball:例如：地球有水
+        @Code:earthHaveWaterTrue
+        @Ball:總不能在寫
+        @Code:earthHaveWaterFalse
+        @Ball:說地球上沒有水吧。
+        @Ball:這時候就可以寫。
+        @Code:finalEarthHaveWaterTrue
+        @Ball:如果再次使用了
+        @Code:earthHaveWaterFalse
+        @Ball:就會無法執行。
+        @Ball:方法的話也可以，就是讓方法無法被重寫
+        @Ball:與abstract相反的作用。
+        @Ball:類的話也可以，就是讓類沒辦法繼承
+        @Ball:與abstract相反的作用。
+        @Ball:「如果我想要儲存一個固定的變量的話要怎麼辦?」
+        @Answer:使用final`),Part.Part31=Object.freeze(`@Ball:class 就像生物分類裡的「屬」
         @Ball:往上可以是「科、目、門」，代表更大的分類；
         @Ball:往下可以是「種」，代表更具體的個體。
         @Ball:比如：假如有個 class 是 Animal（動物）
@@ -229,4 +247,131 @@ class Part{}Part.Part1=Object.freeze(`@Ball:true為真，false為假
         @Ball:而是說明了「狗應該有四隻腳、會叫，還會搖尾巴」
         @Ball:這些基本特徵。
         @Ball:「class是一個什麼?」
-        @Answer:框架`);export{Part};
+        @Answer:框架`),Part.Part32=Object.freeze(`@Ball:class在檔案當中儲存為.java文件
+        @Ball:用資料夾分隔的叫做包(package)。
+        @Ball:「用資料夾分隔的叫做?」
+        @Answer:包`),Part.Part33=Object.freeze(`@Ball:一個class可以繼承 (在某class的下屬)
+        @Ball:例如：我們說class Dog繼承(extends)自class Animal
+        @Code:extend
+        @Ball:繼承會帶有上屬class的所有特性
+        @Ball:即class Dog會動、沒有細胞壁
+        @Ball:這些特性就是繼承自class Animal的。
+        @Ball:「繼承會?」
+        @Answer:帶有上屬class的所有特性`),Part.Part34=Object.freeze(`@Ball:Class內可以儲存方法或者變量
+        @Ball:儲存方法的形式是：
+        @Ball:權限 是否static 是否final/abstract 傳回類型 方法名稱(方法參數列表) {任何程式碼}
+        @Ball:如果是static，就直接 類名稱.方法名稱(參數列表)即可訪問。
+        @Ball:如果不是static，就直接 類實例.方法名稱(參數列表)即可訪問。
+        @Ball:如果要儲存變量，形式為
+        @Ball:權限 是否static 是否final 類型 名稱 = 值;
+        @Ball:如果是static，就直接 類名稱.變量名稱即可訪問。
+        @Ball:如果不是static，就直接 類實例.變量名稱即可訪問。
+        @Ball:對於非static的程式碼
+        @Ball:可以使用this來取出自己的方法或變量來用
+        @Ball:也可以用super取出超類中任一一個超類的方法或變量來用。
+        @Ball:「Class內能儲存什麼?」
+        @Answer:方法或者變量`),Part.gr=Object.freeze(`@Ball:構造函數用於創建一個class的實例
+        @Ball:把class當作是一個模板
+        @Ball:物件就是從模板的特徵創立出的物體
+        @Ball:可以想像自己是一個造世主
+        @Ball:而構造函數就是一個用來創建物體的入口
+        @Ball:用來定義出生前的手續
+        @Ball:用new 類名稱(參數列表)。
+        @Ball:聲明方法：權限 類名稱(參數列表) {任何程式碼}
+        @Ball:類似方法，不過沒有傳回值，方法名稱就是類名稱。`),Part._method=Object.freeze(`@Ball:方法（method）就是程式中用來解決重複問題的工具
+        @Ball:這樣可以避免我們重複寫同樣的程式碼
+        @Ball:也能保持程式更乾淨、更簡潔。
+        @Ball:如何處理重複的計算？
+        @Ball:例如，當我們有很多重複的輸出：
+        @Code:beforeMethod
+        @Ball:這樣的算式有好多相同的部分。
+        @Ball:每次都要重複寫，還可能會忘記括號或寫錯，會非常麻煩。
+        @Function:q5
+        @Ball:解決方法：使用方法（method）
+        @Ball:方法就像是事先寫好的方程式，我們只需要給它數字
+        @Ball:然後它會回傳結果，這樣就不需要每次都寫一樣的東西了。
+        @Code:addMethod
+        @Ball:這段程式碼定義了一個名為 add 的方法，它有兩個輸入（a 和 b）
+        @Ball:然後它會計算 a + b，並把結果傳回來 (return)。
+        @Ball:int為傳回類型，return的東西的類型必須跟這個一樣。
+        @Ball:int a, int b為方法的參數列表，任意數量，形式為「類型 名稱」
+        @Ball:在第二個開始之後的每個前面都要加上「,」來區分每個參數。
+        @Ball:對於每個參數我們把它當作變量的形式，例如：int a = …;。
+        @Function:q5
+        @Ball:{}為呼叫方法時會執行的程式碼。
+        @Ball:當我們想用這個方法來計算 3 + 1 時，我們只需要這樣寫：
+        @Code:addExample
+        @Ball:這裡的 add(3, 1) 會呼叫 add 方法
+        @Ball:把 3 和 1 當作參數傳入方法內，方法內計算出結果 3 + 1 = 4
+        @Ball:然後把這個結果傳回來，並輸出4。
+        @Ball:當我們不使用方法時，可以直接換成這段程式碼：
+        @Code:notUsedExample
+        @Ball:其實就是直接寫了計算式 a + b，結果一樣是 4。
+        @Ball:這樣我們可以看到，add(3, 1) 和 a + b 做的事一樣，都是將 a 和 b 加起來。
+        @Function:q5
+        @Ball:原本的程式碼
+        @Code:beforeMethod
+        @Ball:所以我們也可以寫個方法：
+        @Code:realMethod
+        @Ball:原本的程式碼就變成：
+        @Code:exchangeMethod
+        @Function:q5
+        @Ball:方法用來：
+        @Ball:簡化重複的程式碼：如果算式很長很複雜
+        @Ball:我們就可以把它封裝在方法內，每次需要用到時
+        @Ball:只需要呼叫這個方法，而不用重複寫。
+        @Ball:減少錯誤：只要方法寫一次，其他地方調用時不容易出錯
+        @Ball:避免了手動複製貼上可能造成的錯誤。
+        @Function:q5
+        @Ball:提高可讀性：當我們使用方法來進行計算
+        @Ball:程式碼會看起來更簡潔，更容易理解。
+        @Ball:方法就像是一個可以重複使用的工具箱，裡面放著各種常用的運算
+        @Ball:當我們需要用的時候，就呼叫它，它會幫我們計算
+        @Ball:這樣就不需要每次都寫一樣的東西了，還能保持程式更清晰、更高效。
+        @Ball:「試問下列兩段程式碼是否相等?」
+        @Code:q20_1
+        @Code:q20_2
+        @Code:q1
+        @Answer:true`),Part._abstract=Object.freeze(`@Ball:對於子類可以重寫父類邏輯
+        @Ball:例如：class Dog（狗）繼承自class Animal（動物）
+        @Code:abstractBeforeOverride
+        @Ball:而class Dog就可以重寫Animal動的方法 (邏輯)
+        @Code:abstractAfterOverride
+        @Ball:abstract只能用來修飾方法。
+        @Function:q5
+        @Ball:「abstract只能用來?」
+        @Answer:修飾方法`),Part.rg=Object.freeze(`@Ball:在程式語言中，「權限」就像是一個管理誰能做什麼事情的規則。
+        @Ball:default（預設權限）：
+        @Ball:如果沒有特別標註權限，程式會自動給一個「預設權限」。
+        @Ball:預設權限基本上不會有限制
+        @Ball:但是它無法跨不同的資料夾來讀寫資料，或者調用方法。
+        @Ball:可以想像它像住在同一個公寓樓裡的鄰居大家在一樓活動
+        @Ball:但沒辦法進入別人家裡
+        @Ball:就是同個資料夾的class(.java)文件可以互相訪問
+        @Ball:但不同資料夾就不能訪問了。
+        @Ball:「不同資料夾的.java文件可以訪問為default的實例嗎?」
+        @Code:q1
+        @Answer:false`),Part.gh=Object.freeze(`@Ball:public（公共權限）：
+        @Ball:這是完全沒有限制的權限
+        @Ball:任何人都可以使用或修改資料。
+        @Ball:就像空氣一樣，大家都能接觸到，沒有人會阻止你使用。
+        @Ball:「被聲明為public的物件可以被任何.java文件使用嗎?」
+        @Code:q1
+        @Answer:true`),Part.lp=Object.freeze(`@Ball:private（私有權限）：
+        @Ball:這個權限讓物件只能在同一個class（類）內部使用。
+        @Ball:外部的人不能訪問或修改。
+        @Ball:就像一個家庭的戶口名簿，只有家裡的人可以看
+        @Ball:外面的人沒辦法接觸到。
+        @Ball:「被聲明為private的物件可以被任何.java文件使用嗎?」
+        @Code:q1
+        @Answer:false`),Part.po=Object.freeze(`@Ball:protected（保護權限）：
+        @Ball:這是繼承的權限，除了同一個class可以訪問
+        @Ball:外部的class（類）只要繼承就能使用。
+        @Ball:就像繼承父母財產一樣，子女可以使用家裡的東西
+        @Ball:但外人繼承後也能使用東西。
+        @Ball:如果我要寫程式
+        @Ball:這些權限就可以幫助我決定哪些資料或方法應該是對所有人開放的
+        @Ball:哪些只能由某些人來處理。
+        @Ball:「被聲明為protected的物件可以被外部的繼承類使用嗎?」
+        @Code:q1
+        @Answer:true`);export{Part};
