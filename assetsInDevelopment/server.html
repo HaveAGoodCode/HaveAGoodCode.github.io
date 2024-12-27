@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client-Server JSON Request</title>
+    <script>
+        // 客户端向服务端发送 JSON 请求
+        function submitData() {
+            const data = {
+                name: "John Doe",
+                age: 30
+            };
+
+            fetch('http://localhost:3000/api/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('responseMessage').innerText = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('responseMessage').innerText = 'An error occurred: ' + error.message;
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Send JSON Request to Server</h1>
+    <button onclick="submitData()">Send JSON Request</button>
+    <p id="responseMessage"></p>
+</body>
+
+</html>

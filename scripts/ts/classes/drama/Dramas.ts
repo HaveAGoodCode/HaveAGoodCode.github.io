@@ -7,7 +7,8 @@ export enum DramaType {
     Function = 'Function',
     Image = 'Image',
     Code = 'Code',
-    Answer = 'Answer'
+    Answer = 'Answer',
+    NEXT_PART = 'NextPart'
 };
 
 export default class Drama {
