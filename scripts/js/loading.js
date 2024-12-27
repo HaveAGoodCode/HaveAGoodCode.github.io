@@ -1,8 +1,4 @@
-import LocalStorageApi, { StorageType } from "./classes/localStorage/LocalStorageApi.js";
-import MessageID from "./classes/message/MessageID.js";
-(function () {
-    if (LocalStorageApi.isClean()) {
-        const html = `
+import LocalStorageApi,{StorageType}from"./classes/localStorage/LocalStorageApi.js";import MessageID from"./classes/message/MessageID.js";LocalStorageApi.isClean()?(document.getElementById("base").insertAdjacentHTML("afterbegin",`
         <div id="introBackground">
             <div id="centerBlock">
                 <div id="title">
@@ -15,13 +11,4 @@ import MessageID from "./classes/message/MessageID.js";
                 </div>
                 <button id="closeIntro">繼續</button>
             </div>
-        </div>`;
-        document.getElementById('base').insertAdjacentHTML('afterbegin', html);
-        document.getElementById("closeIntro").onclick = () => document.getElementById('introBackground').remove();
-        MessageID.id = 0;
-        LocalStorageApi.write(StorageType.MESSAGE_COUNT, MessageID.id);
-    }
-    else {
-        MessageID.id = LocalStorageApi.read(StorageType.MESSAGE_COUNT);
-    }
-})();
+        </div>`),document.getElementById("closeIntro").onclick=()=>document.getElementById("introBackground").remove(),MessageID.id=0,LocalStorageApi.write(StorageType.MESSAGE_COUNT,MessageID.id)):MessageID.id=LocalStorageApi.read(StorageType.MESSAGE_COUNT);
