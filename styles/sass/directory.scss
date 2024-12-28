@@ -31,12 +31,17 @@
     flex-grow: 1;
 }
 
+#directory-list > * {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 #directory-list li {
     font-size: 1.5vw;
     font-family: "LXGW WenKai Mono TC", monospace;
     font-weight: 400;
     font-style: normal;
-    padding: 2%;
+    padding: 1%;
     cursor: pointer;
     border-bottom: 2px solid transparent;
     transition: border-color 0.3s, background-color 0.3s;
@@ -45,55 +50,4 @@
 #directory-list li:hover {
     background-color: #e0e0e0;
     border-bottom: 2px solid #000;
-}
-
-#open-directory {
-    position: absolute;
-    top: 1%;
-    left: 1%;
-    border: none;
-    padding: 1vmin;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 2vmin;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 2px solid #000;
-}
-
-#close-directory {
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    position: absolute;
-    top: 0.5vmin;
-    right: 0.5vmin;
-    width: 5vmin;
-    height: 5vmin;
-    transition: background-color 0.3s;
-}
-
-#close-directory:hover {
-    background-color: #e0e0e0;
-    border-radius: 3px;
-}
-
-#close-directory::before,
-#close-directory::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 3.5vmin;
-    height: 2px;
-    background-color: black;
-    transform-origin: center;
-}
-
-#close-directory::before {
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-#close-directory::after {
-    transform: translate(-50%, -50%) rotate(-45deg);
 }

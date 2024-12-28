@@ -5,6 +5,7 @@ import Question from './classes/textbook/Question.js';
 import DirectoryManager from './classes/directory/Directory.js';
 import { Part } from './Drama.js';
 import Drama, { DramaType } from './classes/drama/Dramas.js';
+import Hello from './Hello.js';
 
 (function () {
     const _ = class {
@@ -101,6 +102,8 @@ import Drama, { DramaType } from './classes/drama/Dramas.js';
             this.eventHook();
 
             DirectoryManager.initializeDirectory();
+
+            Hello.init();
         }
 
         private static eventHook(): void {

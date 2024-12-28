@@ -18,14 +18,14 @@ export default class CodeFrame {
     public static createCodeFrame(codes: string): HTMLElement {
         const codeDiv = document.createElement('pre');
         codeDiv.id = 'code';
-        
+
         const code = document.createElement("code");
         const lines = codes.split("\n");
         (code as HTMLElement).classList.add("java");
         const leadingSpacesCount = lines[1].match(/^\s*/)?.[0].length || 0;
         const trimmedLines = lines.slice(1).map(line => line.slice(leadingSpacesCount));
         code.textContent = trimmedLines.join("\n");
-        
+
         hljs.highlightElement(code);
         codeDiv.appendChild(code);
 
