@@ -3,26 +3,6 @@ export default class Hello {
     private static next: boolean = false;
 
     public static init(): void {
-        var tour = new Tour({
-            steps: [
-            {
-              element: "#my-element",
-              title: "Title of my step",
-              content: "Content of my step"
-            },
-            {
-              element: "#my-other-element",
-              title: "Title of my step",
-              content: "Content of my step"
-            }
-          ]});
-          
-          // Initialize the tour
-          tour.init();
-          
-          // Start the tour
-          tour.start();
-        return;
         const mask = document.createElement("div");
         mask.id = "mask";
         mask.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
