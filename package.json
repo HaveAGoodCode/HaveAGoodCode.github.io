@@ -21,6 +21,7 @@
     "@types/gulp-sass": "^5.0.4",
     "@types/jquery": "^3.5.32",
     "@types/node-sass": "^4.11.8",
+    "bootstrap-tour": "^0.12.0",
     "dart-sass": "^1.25.0",
     "del": "^8.0.0",
     "gulp": "^5.0.0",

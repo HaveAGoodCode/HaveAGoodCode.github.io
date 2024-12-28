@@ -3,6 +3,26 @@ export default class Hello {
     private static next: boolean = false;
 
     public static init(): void {
+        var tour = new Tour({
+            steps: [
+            {
+              element: "#my-element",
+              title: "Title of my step",
+              content: "Content of my step"
+            },
+            {
+              element: "#my-other-element",
+              title: "Title of my step",
+              content: "Content of my step"
+            }
+          ]});
+          
+          // Initialize the tour
+          tour.init();
+          
+          // Start the tour
+          tour.start();
+        return;
         const mask = document.createElement("div");
         mask.id = "mask";
         mask.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
@@ -27,7 +47,8 @@ export default class Hello {
         nextButton.id = "next";
         nextButton.onclick = () => this.click();
         nextButton.textContent = "Next";
-        textElement.style.zIndex = "99999";
+        nextButton.style.zIndex = "99999";
+        nextButton.style.position = "absolute";
         document.body.appendChild(nextButton);
 
         // Iterate over the steps and update the text element and element zIndex.
@@ -36,20 +57,24 @@ export default class Hello {
 
     public static async handleSteps(textElement: HTMLElement): Promise<void> {
         for (const [text, element] of this.mae) {
-            // Change zIndex to make the element appear above the mask.
-            const originalZIndex = element.style.zIndex;
-            element.style.zIndex = "1001";
+            let currentElement: HTMLElement | null = element.parentElement;
+            while (currentElement) {
+                if (window.getComputedStyle(currentElement).zIndex !== "auto") {
+                    currentElement.style.zIndex = "auto";
+                }
+                currentElement = currentElement.parentElement;
+            }
             
-            // Update the text element with the current text.
+    
+            // 更新文字
             textElement.textContent = text;
-
-            // Wait for the next button click to proceed.
+    
+            // 等待下一步
             await this.waitForNext();
-
-            // Restore the original zIndex of the element.
-            element.style.zIndex = originalZIndex;
+    
         }
     }
+    
 
     public static async click(): Promise<void> {
         // Set next to true and resolve the Promise to continue.
