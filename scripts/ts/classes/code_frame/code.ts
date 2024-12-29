@@ -1,12 +1,7 @@
 export default class CodeFrame {
     private static codeFrame: HTMLElement;
-    private static spanIcon: HTMLElement;
 
     static {
-        const spanIcon = document.createElement('button');
-        spanIcon.id = 'content_copy';
-        spanIcon.innerHTML = `<i class="fa-regular fa-copy"></i>`;
-        CodeFrame.spanIcon = spanIcon;
         CodeFrame.codeFrame = CodeFrame.createCodeFrame(`
         public final class Main {
             public static void main(String[] args) {
@@ -29,8 +24,10 @@ export default class CodeFrame {
         hljs.highlightElement(code);
         codeDiv.appendChild(code);
 
-        const spanIcon: HTMLElement = CodeFrame.spanIcon.cloneNode(true) as HTMLElement;
-        spanIcon.addEventListener('click', () => {
+        const spanIcon = document.createElement('button');
+        spanIcon.id = 'content_copy';
+        spanIcon.innerHTML = `<i class="fa-regular fa-copy"></i>`;
+        spanIcon.onclick = () => {
             navigator.clipboard.writeText((code as HTMLElement).textContent as string);
 
             spanIcon.classList.remove('fa-regular');
@@ -39,7 +36,7 @@ export default class CodeFrame {
                 spanIcon.classList.remove('fa-solid');
                 spanIcon.classList.add('fa-regular');
             }, 300);
-        });
+        };
         codeDiv.appendChild(spanIcon);
 
         return codeDiv;

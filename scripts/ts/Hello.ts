@@ -1,8 +1,11 @@
 export default class Hello {
     private static readonly mae: [string, HTMLElement][] = [["eee", (document.getElementById("left") as HTMLElement)]];
     private static next: boolean = false;
+    private static close: boolean = false;
+    public static f5Show: boolean = true;
 
     public static init(): void {
+        return;
         const mask = document.createElement("div");
         mask.id = "mask";
         mask.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
@@ -29,7 +32,17 @@ export default class Hello {
         nextButton.textContent = "Next";
         nextButton.style.zIndex = "99999";
         nextButton.style.position = "absolute";
+        nextButton.style.left = "7%";
+        nextButton.style.top = "1%";
         document.body.appendChild(nextButton);
+
+        const closeButton = document.createElement("button");
+        closeButton.id = "close";
+        closeButton.onclick = () => this.close = true;
+        closeButton.textContent = "Close";
+        closeButton.style.zIndex = "99999";
+        closeButton.style.position = "absolute";
+        document.body.appendChild(closeButton);
 
         // Iterate over the steps and update the text element and element zIndex.
         this.handleSteps(textElement);
@@ -44,17 +57,20 @@ export default class Hello {
                 }
                 currentElement = currentElement.parentElement;
             }
-            
-    
+
+
             // 更新文字
             textElement.textContent = text;
-    
+
             // 等待下一步
             await this.waitForNext();
-    
+
+            if (this.close) {
+                break;
+            }
         }
     }
-    
+
 
     public static async click(): Promise<void> {
         // Set next to true and resolve the Promise to continue.

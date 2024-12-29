@@ -14,8 +14,12 @@ export default class Message {
     private static goodMessage: string;
 
     public static async initialize() {
-        const messageRes = await fetch(Setting.fineSentenceAPI);
-        Message.goodMessage = await messageRes.text();
+        try {
+            const messageRes = await fetch(Setting.fineSentenceAPI);
+            Message.goodMessage = await messageRes.text();
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     public type: DramaType;
