@@ -10,7 +10,7 @@ export default class Orientation {
     public static checkOrientation(): void {
         const bo: HTMLElement | null = document.getElementById("alert_box");
 
-        if (window.orientation === undefined || Math.abs(window.orientation) === 90)  {
+        if (window.orientation === undefined || /iPad/i.test(navigator.userAgent) || Math.abs(window.orientation) === 90)  {
             if (bo !== null) {
                 bo.remove();
             }
