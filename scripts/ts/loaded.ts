@@ -113,8 +113,14 @@ import Hello from './Hello.js';
                     ev.stopPropagation();
                 }
             }, true);
-
-            (document.getElementById('left') as HTMLElement).addEventListener('click', async () => await this.click());
+        
+            (document.getElementById('left') as HTMLElement).addEventListener('click', async (event) => {
+                if ((event.target as HTMLElement).tagName === 'BUTTON') {
+                    return;
+                }
+            
+                await this.click();
+            });
 
             const checkOrientation = function () {
                 const bo: HTMLElement | null = document.getElementById("alert_box");

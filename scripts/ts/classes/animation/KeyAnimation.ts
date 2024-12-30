@@ -13,7 +13,7 @@ export default class KeyAnimation {
         KeyAnimation.toggleContinue();
         KeyAnimation.setupObjAnimationStyles(obj);
 
-        KeyAnimation.typing(string, obj, 70, () => {
+        KeyAnimation.typing(string, obj, 30, () => {
             KeyAnimation.finalizeAnimation(obj, runnable);
         });
     }

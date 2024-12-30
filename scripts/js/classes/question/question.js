@@ -1,1 +1,4 @@
-export default class Question{static addToHTML(t){}}
+export default class Question {
+    static addToHTML(obj) {
+    }
+}

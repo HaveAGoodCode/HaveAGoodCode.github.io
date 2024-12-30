@@ -25,8 +25,10 @@ export default class CodeFrame {
         codeDiv.appendChild(code);
 
         const spanIcon = document.createElement('button');
-        spanIcon.id = 'content_copy';
         spanIcon.innerHTML = `<i class="fa-regular fa-copy"></i>`;
+        spanIcon.style.zIndex = "9999999999999";
+        
+        codeDiv.appendChild(spanIcon);
         spanIcon.onclick = () => {
             navigator.clipboard.writeText((code as HTMLElement).textContent as string);
 
@@ -37,7 +39,6 @@ export default class CodeFrame {
                 spanIcon.classList.add('fa-regular');
             }, 300);
         };
-        codeDiv.appendChild(spanIcon);
 
         return codeDiv;
     }
