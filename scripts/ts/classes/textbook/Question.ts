@@ -24,6 +24,28 @@ export default class Question {
         Question.question_answer = question_answer;
     }
 
+    public static buttonF(a: string, correct: boolean): HTMLButtonElement {
+        const button: HTMLButtonElement = document.createElement("button");
+        button.classList.add("button-6");
+        button.textContent = a;
+        if (correct) {
+            button.classList.add("correct");
+            button.onclick = () => {
+                setTimeout(() => {
+                    Question.q5();
+                }, 500);
+            };
+        } else {
+            button.classList.add("shake-red");
+        }
+        return button;
+    }
+
+    public static q1(): void {
+        Left.append(Question.buttonF("false", true));
+        Left.append(Question.buttonF("true", false));
+    }
+
     static q4() {
         const elements = <HTMLElement[]>Array.from(document.querySelectorAll('*:not(html):not(body):not(head):not(#base):not(#left *):not(#left)'));
 
@@ -37,6 +59,8 @@ export default class Question {
         });
 
         Question.timeStop = true;
+
+        Left.append(Question.question_answer);
     }
 
     static async q5() {
@@ -58,6 +82,8 @@ export default class Question {
             }
         });
 
+        this.elementStateMap.clear();
+
         Left.clear();
 
         Question.timeStop = false;
@@ -66,9 +92,5 @@ export default class Question {
             await processMessage();
         }
         await processMessage();
-    }
-
-    static q6() {
-        (document.getElementById("left") as HTMLElement).appendChild(Question.question_answer);
     }
 }

@@ -6,6 +6,8 @@ import DirectoryManager from './classes/directory/Directory.js';
 import { Part } from './Drama.js';
 import Drama, { DramaType } from './classes/drama/Dramas.js';
 import Hello from './Hello.js';
+import Left from './classes/left/Left.js';
+import Orientation from './Orientation.js';
 
 (function () {
     const _ = class {
@@ -32,7 +34,6 @@ import Hello from './Hello.js';
                 const lines: string[] = value.split("\n");
                 lines.forEach(line => allLines.push(line));
                 allLines.push("@" + DramaType.Function + ":q4");
-                allLines.push("@" + DramaType.Function + ":q6");
             });
 
             const lines: string[] = allLines.map(s => s.trim());
@@ -100,6 +101,7 @@ import Hello from './Hello.js';
             this.restoreState();
 
             this.eventHook();
+            Orientation.init();
 
             DirectoryManager.initializeDirectory();
 
@@ -109,40 +111,20 @@ import Hello from './Hello.js';
         private static eventHook(): void {
             document.body.addEventListener('click', (ev) => {
                 if (Question.timeStop) {
+                    if (ev.target instanceof HTMLButtonElement && ev.target.id === "content_copy" && ev.target.firstChild !== null && ev.target.firstChild instanceof HTMLElement && ev.target.firstChild.id === "content_copy_icon" && ev.target.firstChild.onclick !== null) {
+                        ev.target.firstChild.onclick();
+                    } else if(ev.target instanceof HTMLElement && ev.target.id === "content_copy_icon" && ev.target.onclick !== null) {
+                        ev.target.onclick();
+                    } else if (ev.target instanceof HTMLButtonElement && ev.target.classList.contains("button-6") && ev.target.onclick !== null) {
+                        ev.target.onclick();
+                    }
+
                     ev.preventDefault();
                     ev.stopPropagation();
                 }
             }, true);
-        
-            (document.getElementById('left') as HTMLElement).addEventListener('click', async (event) => {
-                if ((event.target as HTMLElement).tagName === 'BUTTON') {
-                    return;
-                }
-            
-                await this.click();
-            });
 
-            const checkOrientation = function () {
-                const bo: HTMLElement | null = document.getElementById("alert_box");
-                if (window.matchMedia("(orientation: portrait)")) {
-                    if (bo !== null) {
-                        bo.remove();
-                    }
-                } else {
-                    if (bo === null) {
-                        const a: HTMLElement = document.createElement("div");
-                        a.id = "alert_box";
-                        const b: HTMLElement = document.createElement("p");
-                        b.textContent = "請轉到橫向畫面。";
-                        a.appendChild(b);
-                        document.body.appendChild(a);
-                    }
-                }
-            };
-            const supportsOrientationChange = "onorientationchange" in window,
-                orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
-            window.addEventListener(orientationEvent, checkOrientation, false);
-            checkOrientation();
+            Left.addEventListener('click', async () => await this.click());
         }
     };
 })();

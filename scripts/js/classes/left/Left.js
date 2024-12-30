@@ -1,5 +1,1 @@
-export default class Left {
-    static clear() {
-        Array.from(document.querySelectorAll("#left *")).forEach(element => element.remove());
-    }
-}
+class Left{static append(e){this.left.appendChild(e)}static clear(){this.left.querySelectorAll("*").forEach(e=>e.remove())}static addEventListener(e,t){this.left.addEventListener(e,t)}}Left.left=document.getElementById("left");export default Left;

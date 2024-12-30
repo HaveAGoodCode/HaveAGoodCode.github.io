@@ -25,20 +25,26 @@ export default class CodeFrame {
         codeDiv.appendChild(code);
 
         const spanIcon = document.createElement('button');
-        spanIcon.innerHTML = `<i class="fa-regular fa-copy"></i>`;
-        spanIcon.style.zIndex = "9999999999999";
-        
-        codeDiv.appendChild(spanIcon);
-        spanIcon.onclick = () => {
+        spanIcon.id = 'content_copy';
+
+        const i = document.createElement('i');
+        i.id = 'content_copy_icon';
+        i.classList.add('fa-regular');
+        i.classList.add('fa-copy');
+        spanIcon.appendChild(i);
+
+        i.onclick = () => {
             navigator.clipboard.writeText((code as HTMLElement).textContent as string);
 
-            spanIcon.classList.remove('fa-regular');
-            spanIcon.classList.add('fa-solid');
+            i.classList.remove('fa-regular');
+            i.classList.add('fa-solid');
             setTimeout(() => {
-                spanIcon.classList.remove('fa-solid');
-                spanIcon.classList.add('fa-regular');
-            }, 300);
+                i.classList.remove('fa-solid');
+                i.classList.add('fa-regular');
+            }, 200);
         };
+        
+        codeDiv.appendChild(spanIcon);
 
         return codeDiv;
     }
