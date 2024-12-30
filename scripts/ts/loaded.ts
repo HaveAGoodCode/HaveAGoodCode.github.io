@@ -30,10 +30,14 @@ import Orientation from './Orientation.js';
             const values: any[] = Object.values(Part);
 
             const allLines: string[] = [];
-            values.forEach(value => {
+            values.forEach((value, index) => {
                 const lines: string[] = value.split("\n");
                 lines.forEach(line => allLines.push(line));
-                allLines.push("@" + DramaType.Function + ":q4");
+                if (index === 0 || index === 1) {
+                    allLines.push("@" + DramaType.Function + ":q4r");
+                } else {
+                    allLines.push("@" + DramaType.Function + ":q4");
+                }
             });
 
             const lines: string[] = allLines.map(s => s.trim());
@@ -111,16 +115,16 @@ import Orientation from './Orientation.js';
         private static eventHook(): void {
             document.body.addEventListener('click', (ev) => {
                 if (Question.timeStop) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+
                     if (ev.target instanceof HTMLButtonElement && ev.target.id === "content_copy" && ev.target.firstChild !== null && ev.target.firstChild instanceof HTMLElement && ev.target.firstChild.id === "content_copy_icon" && ev.target.firstChild.onclick !== null) {
                         ev.target.firstChild.onclick();
-                    } else if(ev.target instanceof HTMLElement && ev.target.id === "content_copy_icon" && ev.target.onclick !== null) {
+                    } else if (ev.target instanceof HTMLElement && ev.target.id === "content_copy_icon" && ev.target.onclick !== null) {
                         ev.target.onclick();
                     } else if (ev.target instanceof HTMLButtonElement && ev.target.classList.contains("button-6") && ev.target.onclick !== null) {
                         ev.target.onclick();
                     }
-
-                    ev.preventDefault();
-                    ev.stopPropagation();
                 }
             }, true);
 

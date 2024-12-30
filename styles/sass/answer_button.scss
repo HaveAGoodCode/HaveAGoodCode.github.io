@@ -53,7 +53,15 @@
     100% { transform: translateX(0); }
 }
 
-.button-6:active.shake-red {
+.button-6.shake-green {
+    background-color: #ccffcc;
+    border-color: #00cc00;
+    color: #00cc00;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+    outline: none;
+}
+
+.button-6.shake-red {
     animation: shake 0.5s ease-in-out;
     background-color: #ffcccc;
     border-color: #ff0000;

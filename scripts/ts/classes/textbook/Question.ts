@@ -31,12 +31,18 @@ export default class Question {
         if (correct) {
             button.classList.add("correct");
             button.onclick = () => {
+                button.classList.add("shake-green");
+
                 setTimeout(() => {
                     Question.q5();
+                    button.classList.remove("shake-green");
                 }, 500);
             };
         } else {
-            button.classList.add("shake-red");
+            button.onclick = () => {
+                button.classList.add("shake-red");
+                setTimeout(() => button.classList.remove("shake-red"), 500);
+            };
         }
         return button;
     }
@@ -44,6 +50,26 @@ export default class Question {
     public static q1(): void {
         Left.append(Question.buttonF("false", true));
         Left.append(Question.buttonF("true", false));
+    }
+
+    public static q2(): void {
+        Left.append(Question.buttonF("false", false));
+        Left.append(Question.buttonF("true", true));
+    }
+
+    static q4r() {
+        const elements = <HTMLElement[]>Array.from(document.querySelectorAll('*:not(html):not(body):not(head):not(#base):not(#left *):not(#left)'));
+
+        elements.forEach(element => {
+            Question.elementStateMap.set(element, {
+                filter: element.style.filter || null,
+                animationPlayState: element.style.animationPlayState || null,
+            });
+            element.style.filter = 'blur(2px) grayscale(100%)';
+            element.style.animationPlayState = "paused";
+        });
+
+        Question.timeStop = true;
     }
 
     static q4() {

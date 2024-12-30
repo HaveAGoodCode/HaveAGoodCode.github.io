@@ -4,16 +4,15 @@ export class Part {
         @Ball:例如：「今天是星期一嗎？」
         @Ball:如果今天是星期一，電腦就會回答 true；
         @Ball:如果不是，電腦就會回答 false。
-        @Ball:「水有毒嗎?」
-        @Function:q1
-        @Answer:false`);
+        @Ball:「請用電腦的方式回答 2+5=6?」
+        @Function:q1`);
     static Part2 = Object.freeze(`@Ball:==用來判斷是否相等
         @Ball:如果跟電腦說5 == 5，那電腦就會回答true(真的)
         @Ball:因為 5 跟 5 是一樣的。
         @Ball:但如果跟電腦說5 == 3，那電腦就會回答false(假的)
         @Ball:因為 5 跟 3 不一樣。
         @Ball:「8==8，試問電腦會回答什麼?」
-        @Answer:true`);
+        @Function:q2`);
     static Part3 = Object.freeze(`@Code:println
         @Ball:用來輸出結果，就是讓電腦把東西「寫出來」。
         @Ball:「請回答下列程式碼的輸出?」
