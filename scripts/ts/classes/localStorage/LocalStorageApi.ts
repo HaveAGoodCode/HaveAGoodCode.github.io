@@ -11,6 +11,7 @@ export class StorageType {
 
     public static MUSIC_TIME = new StorageType("music_time");
     public static MESSAGE_COUNT = new StorageType("message_count");
+    public static THEME = new StorageType("theme");
 }
 
 export default class LocalStorageApi {

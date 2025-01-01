@@ -2,7 +2,7 @@ a {
 	text-decoration: none;
 	font-weight: 300;
 	&:hover {
-		color: yellow;
+		color: var(-side_menu-a-hover);
 	}
 }
 a,
@@ -13,11 +13,11 @@ label {
 .sideMenu {
 	width: 300px;
 	height: 100%;
-	background-color: white;
+	background-color: var(--side_menu-background-color);
 	display: flex;
 	flex-direction: column;
 	padding: 50px 0;
-	box-shadow: 1px 0 1px rgba(23, 23, 54, 0.6);
+	box-shadow: 1px 0 1px var(--side_menu-label-shadow-color);
 	position: absolute;
 	transform: translateX(-100%);
 	transition: 0.5s;
@@ -27,8 +27,8 @@ label {
 	label {
 		width: 20px;
 		height: 80px;
-		background-color: white;
-		color: #686666;
+		background-color: var(--side_menu-background-color);
+		color: var(--font-color);
 		position: absolute;
 		right: -20px;
 		top: 0;
@@ -37,7 +37,7 @@ label {
 		line-height: 80px;
 		text-align: center;
 		border-radius: 0 5px 5px 0;
-		box-shadow: 1px 0 1px rgba(23, 23, 54, 0.6);
+		box-shadow: 1px 0 1px var(--side_menu-label-shadow-color);
 	}
 }
 
@@ -57,7 +57,7 @@ label {
 nav {
 	a {
 		display: block;
-		color: #fff;
+		color: var(--font-color-reverse);
 		padding: 20px 10px;
 		position: relative;
 
@@ -74,7 +74,7 @@ nav {
 		& + a::before {
 			content: "";
 			position: absolute;
-			border-top: 1px dashed #ffffff;
+			border-top: 1px dashed var(--font-color);
 			top: 0px;
 		}
 	}

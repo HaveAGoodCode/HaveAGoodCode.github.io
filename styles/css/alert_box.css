@@ -1,1 +1,1 @@
-#alert_box{background-color:#f8d7da;width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;position:absolute;top:0;left:0;z-index:4}#alert_box p{font-size:10vw;color:#721c24}
+#alert_box{background-color:var(--alert_box-background-color);width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;position:absolute;top:0;left:0;z-index:4}#alert_box p{font-size:10vw;color:var(--alert_box-text-color)}

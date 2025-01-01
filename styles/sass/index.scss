@@ -90,6 +90,8 @@
     align-items: flex-start;
     gap: 1%;
     box-sizing: border-box;
+    background-color: var(--font-color-reverse);
+    color: var(--font-color);
 
     z-index: -1;
 }
@@ -98,4 +100,24 @@
     width: 100%;
     box-sizing: border-box;
     text-align: left;
+}
+[data-theme-toggle] {
+    position: absolute;
+    border-radius: 50%;
+    top: 1vh;
+    left: 1vw;
+    min-width: 3em;
+    min-height: 3em;
+    border: none;
+    color: var(--font-color);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+[data-theme-toggle]:hover {
+    text-shadow: 3px 3px 7px var(--black-seventy);
 }

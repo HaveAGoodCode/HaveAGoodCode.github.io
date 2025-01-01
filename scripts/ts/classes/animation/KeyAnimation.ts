@@ -5,6 +5,10 @@ export default class KeyAnimation {
         return KeyAnimation.continue;
     }
 
+    public static setCanContinue(value: boolean) {
+        KeyAnimation.continue = value;
+    }
+
     private static toggleContinue(): void {
         KeyAnimation.continue = !KeyAnimation.continue;
     }
@@ -19,7 +23,7 @@ export default class KeyAnimation {
     }
 
     private static setupObjAnimationStyles(obj: HTMLElement): void {
-        obj.style.borderRightColor = document.documentElement.style.getPropertyValue('--caret-color');
+        obj.style.borderRightColor = "var('--caret-color')";
         obj.style.animation = `caret 0.8s steps(1) infinite`;
     }
 

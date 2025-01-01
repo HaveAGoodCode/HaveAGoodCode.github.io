@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--black_fifty);
     z-index: 1;
     display: none;
 }
@@ -15,8 +15,8 @@
     left: 0;
     width: 30%;
     height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    background-color: var(--directory-background-color);
+    box-shadow: 2px 0 5px var(--black_thirty);
     display: none;
     z-index: 2;
     flex-direction: column;
@@ -28,12 +28,13 @@
     padding: 5%;
     margin: 0;
     overflow-y: auto;
-    flex-grow: 1;
+    flex-grow: 0;
 }
 
 #directory-list > * {
     margin-top: 0;
     margin-bottom: 0;
+    color: var(--font-color);
 }
 
 #directory-list li {
@@ -48,6 +49,6 @@
 }
 
 #directory-list li:hover {
-    background-color: #e0e0e0;
-    border-bottom: 2px solid #000;
+    background-color: var(--directory-li_hover);
+    border-bottom: 2px solid var(--directory-li_bottom);
 }

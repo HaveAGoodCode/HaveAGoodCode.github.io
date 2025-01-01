@@ -1,3 +1,4 @@
+import KeyAnimation from "../animation/KeyAnimation.js";
 import Drama, { DramaType } from "../drama/Dramas.js";
 import Left from "../left/Left.js";
 import Message, { processMessage } from "../message/Message.js";
@@ -50,70 +51,26 @@ export default class Question {
     public static q1(): void {
         Left.append(Question.buttonF("false", true));
         Left.append(Question.buttonF("true", false));
+        KeyAnimation.setCanContinue(false);
     }
 
     public static q2(): void {
         Left.append(Question.buttonF("false", false));
         Left.append(Question.buttonF("true", true));
-    }
-
-    static q4r() {
-        const elements = <HTMLElement[]>Array.from(document.querySelectorAll('*:not(html):not(body):not(head):not(#base):not(#left *):not(#left)'));
-
-        elements.forEach(element => {
-            Question.elementStateMap.set(element, {
-                filter: element.style.filter || null,
-                animationPlayState: element.style.animationPlayState || null,
-            });
-            element.style.filter = 'blur(2px) grayscale(100%)';
-            element.style.animationPlayState = "paused";
-        });
-
-        Question.timeStop = true;
+        KeyAnimation.setCanContinue(false);
     }
 
     static q4() {
-        const elements = <HTMLElement[]>Array.from(document.querySelectorAll('*:not(html):not(body):not(head):not(#base):not(#left *):not(#left)'));
-
-        elements.forEach(element => {
-            Question.elementStateMap.set(element, {
-                filter: element.style.filter || null,
-                animationPlayState: element.style.animationPlayState || null,
-            });
-            element.style.filter = 'blur(2px) grayscale(100%)';
-            element.style.animationPlayState = "paused";
-        });
-
-        Question.timeStop = true;
-
         Left.append(Question.question_answer);
+        KeyAnimation.setCanContinue(false);
     }
 
     static async q5() {
-        const elements = <HTMLElement[]>Array.from(document.querySelectorAll('*:not(html):not(body):not(head):not(#base):not(#left *):not(#left)'));
-
-        elements.forEach(element => {
-            const originalState = Question.elementStateMap.get(element);
-            if (originalState) {
-                if (originalState.filter !== null) {
-                    element.style.filter = originalState.filter;
-                } else {
-                    element.style.filter = "";
-                }
-                if (originalState.animationPlayState !== null) {
-                    element.style.animationPlayState = originalState.animationPlayState;
-                } else {
-                    element.style.animationPlayState = "";
-                }
-            }
-        });
-
-        this.elementStateMap.clear();
-
         Left.clear();
+        KeyAnimation.setCanContinue(true);
 
-        Question.timeStop = false;
         (Question.question_answer as HTMLInputElement).value = "";
+
         while (Message.messages[MessageID.getID()].type !== DramaType.Ball) {
             await processMessage();
         }

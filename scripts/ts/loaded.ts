@@ -8,6 +8,7 @@ import Drama, { DramaType } from './classes/drama/Dramas.js';
 import Hello from './Hello.js';
 import Left from './classes/left/Left.js';
 import Orientation from './Orientation.js';
+import DarkMode from './DarkMode.js';
 
 (function () {
     const _ = class {
@@ -33,9 +34,7 @@ import Orientation from './Orientation.js';
             values.forEach((value, index) => {
                 const lines: string[] = value.split("\n");
                 lines.forEach(line => allLines.push(line));
-                if (index === 0 || index === 1) {
-                    allLines.push("@" + DramaType.Function + ":q4r");
-                } else {
+                if (index !== 0 && index !== 1) {
                     allLines.push("@" + DramaType.Function + ":q4");
                 }
             });
@@ -110,24 +109,10 @@ import Orientation from './Orientation.js';
             DirectoryManager.initializeDirectory();
 
             Hello.init();
+            DarkMode.init();
         }
 
         private static eventHook(): void {
-            document.body.addEventListener('click', (ev) => {
-                if (Question.timeStop) {
-                    ev.preventDefault();
-                    ev.stopPropagation();
-
-                    if (ev.target instanceof HTMLButtonElement && ev.target.id === "content_copy" && ev.target.firstChild !== null && ev.target.firstChild instanceof HTMLElement && ev.target.firstChild.id === "content_copy_icon" && ev.target.firstChild.onclick !== null) {
-                        ev.target.firstChild.onclick();
-                    } else if (ev.target instanceof HTMLElement && ev.target.id === "content_copy_icon" && ev.target.onclick !== null) {
-                        ev.target.onclick();
-                    } else if (ev.target instanceof HTMLButtonElement && ev.target.classList.contains("button-6") && ev.target.onclick !== null) {
-                        ev.target.onclick();
-                    }
-                }
-            }, true);
-
             Left.addEventListener('click', async () => await this.click());
         }
     };

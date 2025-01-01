@@ -1,5 +1,5 @@
 #alert_box {
-    background-color: #f8d7da;
+    background-color: var(--alert_box-background-color);
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -14,5 +14,5 @@
 
 #alert_box p {
     font-size: 10vw;
-    color: #721c24;
+    color: var(--alert_box-text-color);
 }
