@@ -19,7 +19,8 @@ label {
 	padding: 50px 0;
 	box-shadow: 1px 0 1px var(--side_menu-label-shadow-color);
 	position: absolute;
-	transform: translateX(-100%);
+	// shadow + 1%
+	transform: translateX(-101%);
 	transition: 0.5s;
     left: 0;
 	z-index: 1;

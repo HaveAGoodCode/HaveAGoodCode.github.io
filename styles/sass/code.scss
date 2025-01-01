@@ -1,8 +1,8 @@
 #code {
     color: var(--code_text-color);
     background: var(--code_background-color);
-    border-radius: 1%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 1vw;
+    box-shadow: 0 4px 8px var(--black-twenty);
     position: relative;
     box-sizing: border-box;
     user-select: none;
@@ -26,6 +26,8 @@ code {
 }
 
 #content_copy {
+    color: var(--font-color);
+
     padding: 1.5%;
 
     position: absolute;
@@ -37,20 +39,10 @@ code {
 
     cursor: pointer;
     z-index: 1;
+
+    transition: text-shadow 0.3s ease, color 0.3s ease;
 }
 
-#content_copy:hover::before {
-    content: '';
-
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-
-    border-radius: 15%;
-    background-color: var(--code_content_copy-color);
-    transform: scale(0.2);
-
-    z-index: -1;
+#content_copy:hover {
+    text-shadow: 3px 3px 7px var(--black-seventy);
 }

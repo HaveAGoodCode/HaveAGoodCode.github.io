@@ -8,103 +8,119 @@ code.hljs {
     padding: 3px 5px
 }
 
-.hljs-doctag,
-.hljs-keyword,
-.hljs-meta .hljs-keyword,
-.hljs-template-tag,
-.hljs-template-variable,
-.hljs-type,
-.hljs-variable.language_ {
-    /* prettylights-syntax-keyword */
-    color: #d73a49
+[data-theme="dark"] .hljs-comment {
+    color: rgba(255, 255, 255, 0.502)
 }
 
-.hljs-title,
-.hljs-title.class_,
-.hljs-title.class_.inherited__,
-.hljs-title.function_ {
-    /* prettylights-syntax-entity */
-    color: #6f42c1
+[data-theme="dark"] .hljs-meta {
+    color: #fff9
 }
 
-.hljs-attr,
-.hljs-attribute,
-.hljs-literal,
-.hljs-meta,
-.hljs-number,
-.hljs-operator,
-.hljs-variable,
-.hljs-selector-attr,
-.hljs-selector-class,
-.hljs-selector-id {
-    /* prettylights-syntax-constant */
-    color: #005cc5
+[data-theme="dark"] .hljs-built_in,
+[data-theme="dark"] .hljs-class .hljs-title {
+    color: #e9950c
 }
 
-.hljs-regexp,
-.hljs-string,
-.hljs-meta .hljs-string {
-    /* prettylights-syntax-string */
-    color: #032f62
+[data-theme="dark"] .hljs-doctag,
+[data-theme="dark"] .hljs-formula,
+[data-theme="dark"] .hljs-keyword,
+[data-theme="dark"] .hljs-literal {
+    color: #2e95d3
 }
 
-.hljs-built_in,
-.hljs-symbol {
-    /* prettylights-syntax-variable */
-    color: #e36209
+[data-theme="dark"] .hljs-addition,
+[data-theme="dark"] .hljs-attribute,
+[data-theme="dark"] .hljs-meta-string,
+[data-theme="dark"] .hljs-regexp,
+[data-theme="dark"] .hljs-string {
+    color: #00a67d
 }
 
-.hljs-comment,
-.hljs-code,
-.hljs-formula {
-    /* prettylights-syntax-comment */
-    color: #6a737d
+[data-theme="dark"] .hljs-attr,
+[data-theme="dark"] .hljs-number,
+[data-theme="dark"] .hljs-selector-attr,
+[data-theme="dark"] .hljs-selector-class,
+[data-theme="dark"] .hljs-selector-pseudo,
+[data-theme="dark"] .hljs-template-variable,
+[data-theme="dark"] .hljs-type,
+[data-theme="dark"] .hljs-variable {
+    color: #df3079
 }
 
-.hljs-name,
-.hljs-quote,
-.hljs-selector-tag,
-.hljs-selector-pseudo {
-    /* prettylights-syntax-entity-tag */
-    color: #22863a
+[data-theme="dark"] .hljs-bullet,
+[data-theme="dark"] .hljs-link,
+[data-theme="dark"] .hljs-selector-id,
+[data-theme="dark"] .hljs-symbol,
+[data-theme="dark"] .hljs-title {
+    color: #f22c3d
 }
 
-.hljs-subst {
-    /* prettylights-syntax-storage-modifier-import */
-    color: #24292e
-}
-
-.hljs-section {
-    /* prettylights-syntax-markup-heading */
-    color: #005cc5;
-    font-weight: bold
-}
-
-.hljs-bullet {
-    /* prettylights-syntax-markup-list */
-    color: #735c0f
-}
-
-.hljs-emphasis {
-    /* prettylights-syntax-markup-italic */
-    color: #24292e;
+[data-theme="light"] .hljs-comment,
+[data-theme="light"] .hljs-quote {
+    color: #a0a1a7;
     font-style: italic
 }
 
-.hljs-strong {
-    /* prettylights-syntax-markup-bold */
-    color: #24292e;
-    font-weight: bold
+[data-theme="light"] .hljs-doctag,
+[data-theme="light"] .hljs-formula,
+[data-theme="light"] .hljs-keyword {
+    color: #a626a4
 }
 
-.hljs-addition {
-    /* prettylights-syntax-markup-inserted */
-    color: #22863a;
-    background-color: #f0fff4
+[data-theme="light"] .hljs-deletion,
+[data-theme="light"] .hljs-name,
+[data-theme="light"] .hljs-section,
+[data-theme="light"] .hljs-selector-tag,
+[data-theme="light"] .hljs-subst {
+    color: #e45649
 }
 
-.hljs-deletion {
-    /* prettylights-syntax-markup-deleted */
-    color: #b31d28;
-    background-color: #ffeef0
+[data-theme="light"] .hljs-literal {
+    color: #0184bb
+}
+
+[data-theme="light"] .hljs-addition,
+[data-theme="light"] .hljs-attribute,
+[data-theme="light"] .hljs-meta-string,
+[data-theme="light"] .hljs-regexp,
+[data-theme="light"] .hljs-string {
+    color: #50a14f
+}
+
+[data-theme="light"] .hljs-built_in,
+[data-theme="light"] .hljs-class .hljs-title {
+    color: #c18401
+}
+
+[data-theme="light"] .hljs-attr,
+[data-theme="light"] .hljs-number,
+[data-theme="light"] .hljs-selector-attr,
+[data-theme="light"] .hljs-selector-class,
+[data-theme="light"] .hljs-selector-pseudo,
+[data-theme="light"] .hljs-template-variable,
+[data-theme="light"] .hljs-type,
+[data-theme="light"] .hljs-variable {
+    color: #986801
+}
+
+[data-theme="light"] .hljs-bullet,
+[data-theme="light"] .hljs-link,
+[data-theme="light"] .hljs-meta,
+[data-theme="light"] .hljs-selector-id,
+[data-theme="light"] .hljs-symbol,
+[data-theme="light"] .hljs-title {
+    color: #4078f2
+}
+
+[data-theme="light"] .hljs-emphasis {
+    font-style: italic
+}
+
+[data-theme="light"] .hljs-strong {
+    font-weight: 700
+}
+
+[data-theme="light"] .hljs-link {
+    -webkit-text-decoration: underline;
+    text-decoration: underline
 }
