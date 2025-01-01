@@ -1,5 +1,6 @@
 export default class KeyAnimation {
     private static continue: boolean = true;
+    public static autoPlay: boolean = true;
 
     public static get canContinue(): boolean {
         return KeyAnimation.continue;
@@ -13,12 +14,34 @@ export default class KeyAnimation {
         KeyAnimation.continue = !KeyAnimation.continue;
     }
 
-    public static setObjAnimation(string: string, obj: HTMLElement, runnable?: (() => Promise<any>)): void {
+    public static async setObjAnimation(string: string, obj: HTMLElement, runnable?: (() => Promise<any>)): Promise<void> {
         KeyAnimation.toggleContinue();
         KeyAnimation.setupObjAnimationStyles(obj);
 
-        KeyAnimation.typing(string, obj, 30, () => {
-            KeyAnimation.finalizeAnimation(obj, runnable);
+        await KeyAnimation.typingAsync(string, obj, 30);
+        await KeyAnimation.finalizeAnimation(obj, runnable);
+    }
+
+    private static async typingAsync(string: string, element: HTMLElement, typingInterval: number): Promise<void> {
+        return new Promise((resolve) => {
+            let currentIndex = 0;
+
+            const typeNextChar = () => {
+                if (currentIndex >= string.length) {
+                    resolve();
+                    return;
+                }
+
+                const currentChar = string[currentIndex];
+                element.textContent += currentChar;
+                currentIndex++;
+
+                const delay = currentChar === " " ? 0 : typingInterval;
+                setTimeout(typeNextChar, delay);
+            };
+
+            element.textContent = "";
+            setTimeout(typeNextChar, typingInterval);
         });
     }
 
@@ -27,15 +50,19 @@ export default class KeyAnimation {
         obj.style.animation = `caret 0.8s steps(1) infinite`;
     }
 
-    private static finalizeAnimation(obj: HTMLElement, runnable?: (() => Promise<any>) | null): void {
-        setTimeout(() => {
-            obj.style.borderRightColor = 'transparent';
-            KeyAnimation.toggleContinue();
+    private static async finalizeAnimation(obj: HTMLElement, runnable?: (() => Promise<any>) | null): Promise<void> {
+        await new Promise<void>((resolve) => {
+            setTimeout(() => {
+                obj.style.borderRightColor = 'transparent';
+                KeyAnimation.toggleContinue();
 
-            if (runnable !== undefined && runnable !== null) {
-                runnable();
-            }
-        }, 500);
+                if (runnable !== undefined && runnable !== null) {
+                    runnable().then(resolve);
+                } else {
+                    resolve();
+                }
+            }, 500);
+        });
     }
 
     private static typing(string: string, element: HTMLElement, typingInterval: number, endRun: () => void, currentIndex: number = 0, isInitialCall: boolean = true): void {
@@ -71,9 +98,9 @@ export default class KeyAnimation {
 
     public static setObjAnimation2(obj: Function, callback?: (() => Promise<any>)): void {
         KeyAnimation.toggleContinue();
-        
+
         obj();
-        
+
         KeyAnimation.finalizeObjAnimation2(callback);
     }
 

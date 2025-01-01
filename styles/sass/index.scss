@@ -101,6 +101,28 @@
     box-sizing: border-box;
     text-align: left;
 }
+
+#autoPlay {
+    position: absolute;
+    border-radius: 50%;
+    top: 1vh;
+    left: calc(1vw + 3em);
+    min-width: 3em;
+    min-height: 3em;
+    border: none;
+    color: var(--font-color);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+#autoPlay:hover {
+    text-shadow: 3px 3px 7px var(--black-seventy);
+}
+
 [data-theme-toggle] {
     position: absolute;
     border-radius: 50%;

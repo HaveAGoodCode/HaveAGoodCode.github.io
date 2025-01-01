@@ -26,13 +26,6 @@
     width: auto;
 }
 
-.button-6:hover,
-.button-6:focus {
-    border-color: var(--black-fifteen);
-    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    color: var(--black-sixty-five);
-}
-
 .button-6:hover {
     transform: translateY(-1px);
 }

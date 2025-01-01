@@ -75,5 +75,9 @@ export default class Question {
             await processMessage();
         }
         await processMessage();
+
+        if (KeyAnimation.autoPlay) {
+            await Drama.click();
+        }
     }
 }

@@ -1,5 +1,6 @@
+import KeyAnimation from "../animation/KeyAnimation.js";
 import assert from "../assert/assert.js";
-import Message from "../message/Message.js";
+import Message, { processMessage } from "../message/Message.js";
 import Setting from "../setting/Setting.js";
 
 export enum DramaType {
@@ -22,6 +23,18 @@ export default class Drama {
     ]);
 
     private static readonly clickType: DramaType[] = [DramaType.Code, DramaType.Ball];
+
+    public static async click(): Promise<void> {
+        if (!KeyAnimation.canContinue) {
+            return;
+        }
+
+        await processMessage();
+
+        if (KeyAnimation.autoPlay) {
+            await this.click();
+        }
+    }
 
     public static refresh(message: Message): Message {
         for (let [targetType, replaceMap] of Drama.replaceTypes) {

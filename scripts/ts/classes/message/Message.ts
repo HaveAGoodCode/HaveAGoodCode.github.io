@@ -122,7 +122,6 @@ export function createNewTextLine(): HTMLElement {
 }
 
 export async function processMessage(): Promise<void> {
-    await Message.initialize();
     LocalStorageApi.write<number>(StorageType.MESSAGE_COUNT, MessageID.getID());
 
     const message = Drama.refresh(Message.messages[MessageID.getID()]);
@@ -132,7 +131,7 @@ export async function processMessage(): Promise<void> {
 
     // If next Message isn't need click Once, then auto process next message.
     if (message.type === DramaType.Ball) {
-        KeyAnimation.setObjAnimation(message.obj, createNewTextLine(), processNextMessage);
+        await KeyAnimation.setObjAnimation(message.obj, createNewTextLine(), processNextMessage);
 
     } else if (message.type === DramaType.Code) {
         KeyAnimation.setObjAnimation2(message.obj, processNextMessage);

@@ -1,3 +1,4 @@
+import ButtonChange from "./ButtonChange.js";
 import LocalStorageApi, { StorageType } from "./classes/localStorage/LocalStorageApi.js";
 
 export enum Theme {
@@ -17,6 +18,8 @@ export default class DarkMode {
             DarkMode.toggleTheme();
             DarkMode.update();
         });
+
+        ButtonChange.registerButton(DarkMode.button);
     }
 
     private static initTheme(): void {
@@ -36,17 +39,8 @@ export default class DarkMode {
     }
 
     private static update(): void {
-        DarkMode.updateButton(DarkMode.button, DarkMode.currentThemeSetting === Theme.Dark);
+        ButtonChange.changeButtonTheme(DarkMode.currentThemeSetting === Theme.Dark);
         DarkMode.updateThemeOnHtmlEl(DarkMode.currentThemeSetting);
-    }
-
-    public static updateButton(buttonEl: HTMLButtonElement, isDark: boolean): void {
-        if (buttonEl.firstChild === null) {
-            buttonEl.innerHTML = `<i class="fa-regular fa-moon fa-2xl"></i>`;
-        }
-        const newCta = isDark ? "fa-solid" : "fa-regular";
-        const oldCta = (buttonEl.firstChild as HTMLElement).classList[0];
-        (buttonEl.firstChild as HTMLElement).classList.replace(oldCta, newCta);
     }
 
     public static updateThemeOnHtmlEl(theme: Theme): void {

@@ -1,3 +1,4 @@
+import Drama from "./classes/drama/Dramas.js";
 import LocalStorageApi, { StorageType } from "./classes/localStorage/LocalStorageApi.js";
 import MessageID from "./classes/message/MessageID.js";
 import Hello from "./Hello.js";
@@ -21,6 +22,7 @@ import Hello from "./Hello.js";
         </div>`;
         (document.getElementById('base') as HTMLElement).insertAdjacentHTML('afterbegin', html);
         (document.getElementById("closeIntro") as HTMLElement).onclick = () => {
+            Drama.click();
             (document.getElementById('introBackground') as HTMLElement).remove();
 
             let tour: { addStep: (arg0: { element: string; title: string; content?: string; reflex?: boolean; }) => void; init: () => void; start: () => void; };

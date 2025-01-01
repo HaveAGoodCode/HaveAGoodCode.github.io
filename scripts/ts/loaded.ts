@@ -9,19 +9,12 @@ import Hello from './Hello.js';
 import Left from './classes/left/Left.js';
 import Orientation from './Orientation.js';
 import DarkMode from './DarkMode.js';
+import ButtonChange from './ButtonChange.js';
 
 (function () {
     const _ = class {
         static {
             this.initAll();
-        }
-
-        private static async click(): Promise<void> {
-            if (!KeyAnimation.canContinue) {
-                return;
-            }
-
-            await processMessage();
         }
 
         private static async getDrama(): Promise<void> {
@@ -110,10 +103,22 @@ import DarkMode from './DarkMode.js';
 
             Hello.init();
             DarkMode.init();
+            Message.initialize();
         }
 
         private static eventHook(): void {
-            Left.addEventListener('click', async () => await this.click());
+            Left.addEventListener('click', async () => await Drama.click());
+
+            const autoPlayButton = document.getElementById("autoPlay") as HTMLButtonElement;
+            ButtonChange.registerButton(autoPlayButton, undefined, () => {
+                KeyAnimation.autoPlay = !KeyAnimation.autoPlay;
+                const autoPlayIcon = autoPlayButton.firstChild as HTMLElement;
+                if (autoPlayIcon.classList.contains("fa-circle-play")) {
+                    autoPlayIcon.classList.replace("fa-circle-play", "fa-circle-stop");
+                } else {
+                    autoPlayIcon.classList.replace("fa-circle-stop", "fa-circle-play");
+                }
+            });
         }
     };
 })();
