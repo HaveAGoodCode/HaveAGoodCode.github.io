@@ -4,7 +4,7 @@ class Part{}Part.Part1=Object.freeze(`@Ball:true為真，false為假
         @Ball:如果今天是星期一，電腦就會回答 true；
         @Ball:如果不是，電腦就會回答 false。
         @Ball:「請用電腦的方式回答 2+5=6?」
-        @Function:q1`),Part.Part2=Object.freeze(`@Ball:==用來判斷是否相等
+        @Function:getQ1`),Part.Part2=Object.freeze(`@Ball:==用來判斷是否相等
         @Ball:如果跟電腦說5 == 5，那電腦就會回答true(真的)
         @Ball:因為 5 跟 5 是一樣的。
         @Ball:但如果跟電腦說5 == 3，那電腦就會回答false(假的)

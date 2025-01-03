@@ -8,6 +8,7 @@ import Drama, { DramaType } from "../drama/Dramas.js";
 import LocalStorageApi, {
     StorageType,
 } from "../localStorage/LocalStorageApi.js";
+import Qst from "../textbook/qst.js";
 
 export default class Message {
     public static messages: Message[] = [];
@@ -58,7 +59,7 @@ export default class Message {
 
             case DramaType.Function: {
                 const name = string.replace(/[();]/g, "");
-                const functionClassList: Record<string, any> = { Question };
+                const functionClassList: Record<string, any> = { Question, Qst };
 
                 let method = null;
                 for (let className in functionClassList) {
