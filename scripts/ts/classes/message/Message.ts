@@ -41,13 +41,17 @@ export default class Message {
     }
 
     public static createObjWithString(string: string): Message {
-        for (let type of Object.values(DramaType)) {
+        for (let type of Object.values(DramaType).filter((v) => v !== DramaType.Ball)) {
             const prefix = "@" + type + ":";
             if (string.startsWith(prefix)) {
                 return Message.processType(type, string.replace(prefix, ""));
             }
         }
-        throw new Error(`Unknown type : ${string}`);
+        if (!string.startsWith("@")) {
+            return new Message(DramaType.Ball, string);
+        } else {
+            throw new Error(`Unknown type : ${string}`);
+        }
     }
 
     public static processType(type: DramaType, string: string): Message {

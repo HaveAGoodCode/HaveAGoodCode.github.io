@@ -59,6 +59,10 @@ export default class Drama {
         return Drama.clickType.includes(type.type);
     }
 
+    public static processToFilter() {
+        while (true) {}
+    }
+
     public static findMessageID(type?: DramaType, obj?: any, om?: string): number {
         if (Message.messages.length === 0) {
             throw new Error("Message.messages is empty");
