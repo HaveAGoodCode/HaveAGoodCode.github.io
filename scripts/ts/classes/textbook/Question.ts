@@ -51,30 +51,27 @@ export default class Question {
     public static q1(): void {
         Left.append(Question.buttonF("false", true));
         Left.append(Question.buttonF("true", false));
-        KeyAnimation.setCanContinue(false);
+        KeyAnimation.continue = false;
     }
 
     public static q2(): void {
         Left.append(Question.buttonF("false", false));
         Left.append(Question.buttonF("true", true));
-        KeyAnimation.setCanContinue(false);
+        KeyAnimation.continue = false;
     }
 
     static q4() {
         Left.append(Question.question_answer);
-        KeyAnimation.setCanContinue(false);
+        KeyAnimation.continue = false;
     }
 
     static async q5() {
         Left.clear();
-        KeyAnimation.setCanContinue(true);
+        KeyAnimation.continue = true;
 
         (Question.question_answer as HTMLInputElement).value = "";
 
-        while (Message.messages[MessageID.getID()].type !== DramaType.Ball) {
-            await processMessage();
-        }
-        await processMessage();
+        Drama.processWithFilter((msg) => msg.type !== DramaType.Ball);
 
         if (KeyAnimation.autoPlay) {
             await Drama.click();

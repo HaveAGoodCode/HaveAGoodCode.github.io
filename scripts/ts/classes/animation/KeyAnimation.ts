@@ -1,21 +1,9 @@
 export default class KeyAnimation {
-    private static continue: boolean = true;
+    public static continue: boolean = true;
     public static autoPlay: boolean = true;
 
-    public static get canContinue(): boolean {
-        return KeyAnimation.continue;
-    }
-
-    public static setCanContinue(value: boolean) {
-        KeyAnimation.continue = value;
-    }
-
-    private static toggleContinue(): void {
-        KeyAnimation.continue = !KeyAnimation.continue;
-    }
-
     public static async setObjAnimation(string: string, obj: HTMLElement, runnable?: (() => Promise<any>)): Promise<void> {
-        KeyAnimation.toggleContinue();
+        KeyAnimation.continue = false;
         KeyAnimation.setupObjAnimationStyles(obj);
 
         await KeyAnimation.typingAsync(string, obj, 30);
@@ -54,7 +42,7 @@ export default class KeyAnimation {
         await new Promise<void>((resolve) => {
             setTimeout(() => {
                 obj.style.borderRightColor = 'transparent';
-                KeyAnimation.toggleContinue();
+                KeyAnimation.continue = true;
 
                 if (runnable !== undefined && runnable !== null) {
                     runnable().then(resolve);
@@ -94,20 +82,5 @@ export default class KeyAnimation {
         setTimeout(() => {
             KeyAnimation.typing(string, element, typingInterval, endRun, currentIndex + 1, false);
         }, delay);
-    }
-
-    public static setObjAnimation2(obj: Function, callback?: (() => Promise<any>)): void {
-        KeyAnimation.toggleContinue();
-
-        obj();
-
-        KeyAnimation.finalizeObjAnimation2(callback);
-    }
-
-    private static finalizeObjAnimation2(callback: (() => Promise<any>) | undefined): void {
-        setTimeout(() => {
-            KeyAnimation.toggleContinue();
-            callback?.();
-        }, 100);
     }
 }

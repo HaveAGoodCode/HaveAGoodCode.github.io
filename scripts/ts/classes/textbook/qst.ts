@@ -1,6 +1,6 @@
 import KeyAnimation from "../animation/KeyAnimation.js";
+import Drama from "../drama/Dramas.js";
 import Left from "../left/Left.js";
-import { createNewTextLine } from "../message/Message.js";
 import Question from "./Question.js";
 
 export default class Qst {
@@ -57,10 +57,10 @@ export default class Qst {
 
         const randomProposition = allPropositions[Math.floor(Math.random() * allPropositions.length)];
 
-        await KeyAnimation.setObjAnimation("請用電腦的方式回答「" + randomProposition + "」?", createNewTextLine());
+        await KeyAnimation.setObjAnimation("請用電腦的方式回答「" + randomProposition + "」?", Drama.createNewTextLine());
 
         Left.append(Question.buttonF("false", !propositionMapping[randomProposition]));
         Left.append(Question.buttonF("true", propositionMapping[randomProposition]));
-        KeyAnimation.setCanContinue(false);
+        KeyAnimation.continue = false;
     }
 }

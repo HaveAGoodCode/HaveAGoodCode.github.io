@@ -47,8 +47,9 @@ export default class Message {
                 return Message.processType(type, string.replace(prefix, ""));
             }
         }
-        if (!string.startsWith("@")) {
-            return new Message(DramaType.Ball, string);
+        if (!string.startsWith("@") || string.startsWith("@Ball:")) {
+            const prefix = "@" + DramaType.Ball + ":";
+            return Message.processType(DramaType.Ball, string.replace(prefix, ""));
         } else {
             throw new Error(`Unknown type : ${string}`);
         }
@@ -118,34 +119,13 @@ export default class Message {
     }
 }
 
-export function createNewTextLine(): HTMLElement {
-    const div: HTMLElement = document.createElement("div");
-    div.id = "question-title";
-    div.style.width = "auto";
-    (document.getElementById("left") as HTMLElement).appendChild(div);
-    return div;
-}
-
 export async function processMessage(): Promise<void> {
     LocalStorageApi.write<number>(StorageType.MESSAGE_COUNT, MessageID.getID());
 
-    const message = Drama.refresh(Message.messages[MessageID.getID()]);
-    const processNextMessage = Drama.clickOnceContains(MessageID.addOneAndGet())
-        ? undefined
-        : async () => await processMessage();
+    await Drama.processMessage(Drama.getCurrentMessage());
+    MessageID.addOne();
 
-    // If next Message isn't need click Once, then auto process next message.
-    if (message.type === DramaType.Ball) {
-        await KeyAnimation.setObjAnimation(message.obj, createNewTextLine(), processNextMessage);
-
-    } else if (message.type === DramaType.Code) {
-        KeyAnimation.setObjAnimation2(message.obj, processNextMessage);
-
-    } else if (message.type === DramaType.Function) {
-        await message.obj();
-        await processNextMessage?.();
-
-    } else {
-        throw new Error(`Unknown type : ${message.type}`);
+    if (!Drama.clickOnceContains(Drama.getCurrentMessage())) {
+        await processMessage();
     }
 }

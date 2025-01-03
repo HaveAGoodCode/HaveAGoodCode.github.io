@@ -1,4 +1,4 @@
-import Message, { createNewTextLine, processMessage } from './classes/message/Message.js';
+import Message, { processMessage } from './classes/message/Message.js';
 import MessageID from './classes/message/MessageID.js';
 import KeyAnimation from './classes/animation/KeyAnimation.js';
 import Question from './classes/textbook/Question.js';
@@ -42,30 +42,13 @@ import ButtonChange from './ButtonChange.js';
             const currentIndex = MessageID.getID();
 
             if (currentIndex === 0) {
-                // Maybe first message isn't clickOnce message.
-                while (!Drama.clickOnceContains(Message.messages[MessageID.getID()])) {
-                    await processMessage();
-                }
-                // After the while loop,next message is clickOnce message.
-                // We want to show the message.
-                // So, we need process it.
-                await processMessage();
+                Drama.processToNextClickOnce();
                 return;
             }
 
-            let startIndex: number = -1;
-            for (let i = currentIndex; i >= 0; i--) {
-                if (Message.messages[i].type === DramaType.Ball) {
-                    startIndex = i;
-                    break;
-                }
-            }
+            let startIndex: number = Drama.getLastMessageIndex(currentIndex, (msg) => msg.type === DramaType.Ball);
 
-            if (startIndex === -1) {
-                throw new Error("No message with type DramaType.Ball found");
-            }
-
-            KeyAnimation.setObjAnimation(Message.messages[startIndex].obj, createNewTextLine());
+            KeyAnimation.setObjAnimation(Message.messages[startIndex].obj, Drama.createNewTextLine());
 
             // Because messages[startIndex] is processed (DramaType.Ball), so need add 1.
 
@@ -76,12 +59,10 @@ import ButtonChange from './ButtonChange.js';
             // and MessageID.getID() === currentIndex,
             // so we not need to call MessageID.addOne() method.
             for (let i = startIndex + 1; i <= currentIndex; i++) {
-                const currentMessage = Message.messages[i];
+                const currentMessage = Drama.getMessageByID(i);
 
-                if (currentMessage.type === DramaType.Code) {
-                    await currentMessage.obj();
-                } else if (currentMessage.type === DramaType.Function) {
-                    await currentMessage.obj();
+                if (currentMessage.type !== DramaType.Ball) {
+                    await Drama.processMessage(currentMessage);
                 } else {
                     throw new Error("Invalid message type");
                 }
